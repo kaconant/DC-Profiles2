@@ -14,8 +14,6 @@ h1 {
 	flex-wrap: wrap;
 }
 
-
-
 .login-form {
 	margin-right: 60px;
 }
@@ -24,14 +22,9 @@ h1 {
 	margin-top: 20px;
 }
 
-
-
-
 .other-logins {
 	border-left: 1px solid black ;
 }
-
-
 
 .facebook .btn {
 	background-color: #3B539A;
@@ -52,15 +45,12 @@ h1 {
 	color: #FFF;
 }
 
-
 .google .btn:hover {
 	background-color: #85a8fa;
 	margin: 30px 0px 20px 30px;
 	padding-right: 37px;
 	color: #FFF;
 }
-
-
 
 footer {
 	margin-top: 100px;
