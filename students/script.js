@@ -1,26 +1,41 @@
 $(function () {
+    // creating the array
+    var studentCardArray = [];
 
+    // get call the json file + connect above array with sort function + appending information
     $.get('https://s3.amazonaws.com/dc-profiles/Students.json', function(currentCard) {
-        currentCard.sort(function(a,b) {return 0.5 - Math.random()});
-    
-        function renderCards(cardArray) {
-            var allCards = "";  
-
-            cardArray.forEach(function(currentCard) {
-                allCards += '<div class="card text-white bg-primary mb-3" style="width: 18rem;">';
-                allCards += '<div class="card-body">';
-                allCards += '<h4 class="card-text fullName">' + currentCard.fullName + '</h4>';
-                allCards += '<p class="card-text missionStatement"> Motto: <br>' + currentCard.missionStatement + '</p>'; 
-                allCards += '<a href="currentCard.githubUrl" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">GitHub</a><br>'; 
-                allCards += '<a href="currentCard.portfolioUrl" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Portfolio</a><br>'; 
-                allCards += '<a href="currentCard.email" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Email</a><br>'; 
-                allCards += '</div>';
-                allCards += '</div>';
-            });
-            return allCards;
-        };
-        var test = renderCards(currentCard);
+        studentCardArray = currentCard.sort(function(a,b) {return 0.5 - Math.random()});
+        var test = renderCards(studentCardArray);
         $('.mainBody').html(test);
+    });
+
+    // physical rep rendering information to page 
+    function renderCards(cardArray) {
+        var allCards = "";  
+
+        cardArray.forEach(function(currentCard) {
+            allCards += '<div class="card text-white bg-primary mb-3" style="width: 18rem;">';
+            allCards += '<div class="card-body">';
+            allCards += '<h4 class="card-text fullName">' + currentCard.fullName + '</h4>';
+            allCards += '<p class="card-text missionStatement"> Motto: <br>' + currentCard.missionStatement + '</p>'; 
+            allCards += '<a href="' + currentCard.githubUrl + '" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">GitHub</a><br>'; 
+            allCards += '<a href="' + currentCard.portfolioUrl+ '" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Portfolio</a><br>'; 
+            allCards += '<a href="mailto:' + currentCard.email+ '" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Email</a><br>'; 
+            allCards += '</div>';
+            allCards += '</div>';
+        });
+        return allCards;
+    };
+    
+    // will filter when search
+    $(".search-button").on("click", function (e) {
+        e.preventDefault();
+        var searchBar = $(".search-bar").val();
+        var finalSearch = studentCardArray.filter(function(currentCard) {
+            return currentCard.fullName.toLowerCase().indexOf(searchBar.toLowerCase()) > -1;
+        });
+        var filterCard = renderCards(finalSearch);
+        $('.mainBody').html(filterCard);   
     });
 });
 
@@ -28,8 +43,6 @@ $(function () {
 
 to-do list:
 make modal --> include full bio, linkedIn, showcase
-make buttons that activate to links
-make filter for search bar --> filter students
 
 --
 
