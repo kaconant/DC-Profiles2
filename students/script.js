@@ -20,7 +20,7 @@ $(function () {
             allCards += '<p class="card-text missionStatement"> Motto: <br>' + currentCard.missionStatement + '</p>'; 
             allCards += '<a href="' + currentCard.portfolioUrl + '" class="btn btn-primary btn-lg active " role="button" aria-pressed="true">Portfolio</a><br>'; 
             allCards += '<a href="mailto:' + currentCard.email + '" class="btn btn-primary btn-lg active " role="button" aria-pressed="true">Email</a><br>'; 
-            allCards += '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#"' + currentCard.id + 'Learn more about ' + currentCard.firstName + '</button>';
+            allCards += '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="' + currentCard.id + 'Learn more about ' + currentCard.firstName + '"</button>';
 
             currentCard.showcase.forEach(function(show) {
                 allCards += '<p class="showcase">' + currentCard.fullBio +'</p>'
